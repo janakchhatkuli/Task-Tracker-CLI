@@ -13,10 +13,12 @@ def save_fie(tasks):
         json.dumps(tasks,file, indent=5)
 
 def delete_task():
+     print("jkhfsj")
+     return
 
-def add_task():
-    tasks=load_task
-    new_task ={
+def add_task(task):
+	tasks=load_task()
+	new_task ={
         "id":len(tasks)+1,
         "title" : title,
         "description" :description,
@@ -25,6 +27,7 @@ def add_task():
     
 
 def update_task():
+     return
     
 
 
