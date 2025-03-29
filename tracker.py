@@ -25,11 +25,21 @@ def add_task(title,description):
         "id":len(tasks)+1,
         "title" : title,
         "description" :description,
-        "status" : 'incomplete'
+        "status" : "incomplete"
 	}
     tasks.append(new_task)
-
     save_task(tasks)
+
+def add_task(title, description):
+    tasks = load_task()  # ✅ Fixed indentation
+    new_task = {
+        "id": len(tasks) + 1,
+        "title": title,
+        "description": description,
+        "status": "incomplete"
+    }
+    tasks.append(new_task)  # ✅ Fixed indentation
+    save_task(tasks)        # ✅ Fixed indentation
 
 
 def update_task():
