@@ -1,6 +1,7 @@
 import os 
 import json
 import argparse
+import time
 
 task_file = "task-tracker.json"
 
@@ -12,8 +13,8 @@ def load_task():
     
 def save_task(tasks):
     with open(task_file,"w") as file:
-        print("file saved successfully")
-        json.dumps(tasks,file, indent=5)
+        #print("file saved successfully")
+        json.dump(tasks,file, indent=5)
 
 def delete_task(task_id):
     tasks=load_task()
@@ -27,7 +28,8 @@ def add_task(title):
         "id":len(tasks)+1,
         "title" : title,
         #"description" :description,
-        "status" : "incomplete"
+        "status" : "incomplete",
+        "add_time": time.ctime(time.time())
 	}
  tasks.append(new_task)
  save_task(tasks)
@@ -42,11 +44,15 @@ def main():
     parser_add = subparsers.add_parser("add", help ="Add a New Task")
     parser_add.add_argument("title",type=str,help="Task title")
 
+    parser_add = subparsers.add_parser("delete", help ="Delete a Task")
+    parser_add.add_argument("task_id",type=int,help="Task title")
+
     args = parser.parse_args()
     
     if args.command == "add":
         add_task(args.title)
-
+    if args.command == "delete":
+        delete_task(args.task_id)
  
 
 if __name__ == "__main__":
