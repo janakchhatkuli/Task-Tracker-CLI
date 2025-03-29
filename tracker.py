@@ -1,5 +1,6 @@
 import os 
 import json
+import argparse
 
 task_file = "task-tracker.json"
 
@@ -27,13 +28,24 @@ def add_task(title,description):
         "status" : 'incomplete'
 	}
     tasks.append(new_task)
+
     save_task(tasks)
 
 
 def update_task():
      return
     
+def main():
+     parser = argparse.ArgumentParser(description="Task Tracker")
+     subparsers = parser.add_subparsers(dest="command")
 
+     parser_add = subparsers.add_parsers("add", help ="Add a New Task")
+     parser_add.add_argumet("title",type=str,help="Task title")
+
+    args = parser.parse_args()
+    
+    if args.command == "add":
+        add_task(args.title)
 
  
 
