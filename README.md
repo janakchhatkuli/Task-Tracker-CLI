@@ -7,7 +7,7 @@ All The Commands Are Listed Below
 
 # Adding a new task
 python tracker.py add "Buy groceries"
-# Task added successfully (ID: 1)
+
 
 # Updating and deleting tasks
 python tracker.py update 1 "Buy groceries and cook dinner"
