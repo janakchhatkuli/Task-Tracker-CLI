@@ -5,24 +5,24 @@ import time
 from tabulate import tabulate
 
 task_file = "task-tracker.json"
-
+#function to load tasks from json file
 def load_task():
     if os.path.exists(task_file):
         with open(task_file,"r") as file:
             return json.load(file)
     return []
-    
+#function to save task into json file    
 def save_task(tasks):
     with open(task_file,"w") as file:
         #print("file saved successfully")
         json.dump(tasks,file, indent=5)
-
+#function to delete the task 
 def delete_task(task_id):
     tasks=load_task()
     tasks = [task for task in tasks if task["id"]!=task_id]
     save_task(tasks)
     print("Task deleted!")
-
+#function to add new task 
 def add_task(title):
  tasks=load_task()
  new_task ={
@@ -34,6 +34,7 @@ def add_task(title):
  tasks.append(new_task)
  save_task(tasks)
 
+#function to update the existing task
 def update_task(task_id,new_title):
     tasks=load_task()
     for task in tasks :
@@ -43,6 +44,7 @@ def update_task(task_id,new_title):
 
     save_task(tasks)
 
+#function to mark a task in progress
 def mark_in_progress(task_id):
     tasks=load_task()
     for task in tasks:
@@ -51,6 +53,7 @@ def mark_in_progress(task_id):
             task["started_time"] = time.ctime(time.time())
     save_task(tasks)
 
+#function to mark a task done 
 def mark_done(task_id):
     tasks=load_task()
     for task in tasks:
@@ -96,7 +99,7 @@ def display_tasks(status=None):
 
     print(tabulate(table_data, headers=headers, tablefmt="grid"))
 
-# Example usage
+
 
 
 
@@ -121,7 +124,7 @@ def main():
     parser_add = subparsers.add_parser("mark-done", help ="Mark a Task Done")
     parser_add.add_argument("task_id",type=int,help="Task ID")
 
-    parser_add = subparsers.add_parser("list-tasks", help ="Mark a Task Done")
+    parser_add = subparsers.add_parser("list-tasks", help "List The Tasks")
     parser_add.add_argument("status",type=str,help="Status of Task")
 
     args = parser.parse_args()
