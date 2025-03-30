@@ -21,7 +21,7 @@ def delete_task(task_id):
     tasks=load_task()
     tasks = [task for task in tasks if task["id"]!=task_id]
     save_task(tasks)
-    print("Task deleted!")
+    print(f"Task deleted! :{task_id}")
 #function to add new task 
 def add_task(title):
  tasks=load_task()
@@ -31,6 +31,7 @@ def add_task(title):
         "status" : "to-do",
         "add_time": time.ctime(time.time())
 	}
+ print(f"Task added :{new_task["title"]}")
  tasks.append(new_task)
  save_task(tasks)
 
@@ -41,6 +42,7 @@ def update_task(task_id,new_title):
         if task["id"] == task_id:
             task["title"] = new_title
             task["updated_time"] = time.ctime(time.time())
+            print(f"Task updated :{task["title"]}")
 
     save_task(tasks)
 
@@ -51,6 +53,7 @@ def mark_in_progress(task_id):
         if task["id"] == task_id:
             task["status"] = "in-progress"
             task["started_time"] = time.ctime(time.time())
+            print(f"Task In Progress :{task["title"]}")
     save_task(tasks)
 
 #function to mark a task done 
@@ -60,7 +63,9 @@ def mark_done(task_id):
         if task["id"] == task_id:
             task["status"] = "done"
             task["completed_time"] = time.ctime(time.time())
+            print(f"Task completed :{task["title"]}")
     save_task(tasks)
+    
 
 
 
