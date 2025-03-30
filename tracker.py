@@ -124,7 +124,7 @@ def main():
     parser_add = subparsers.add_parser("mark-done", help ="Mark a Task Done")
     parser_add.add_argument("task_id",type=int,help="Task ID")
 
-    parser_add = subparsers.add_parser("list-tasks", help "List The Tasks")
+    parser_add = subparsers.add_parser("list-tasks", help ="List The Tasks")
     parser_add.add_argument("status",type=str,help="Status of Task")
 
     args = parser.parse_args()
